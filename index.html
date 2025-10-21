@@ -107,6 +107,44 @@
             box-shadow: 0 6px 16px rgba(255, 204, 0, 0.4);
         }
         
+        .btn-secondary {
+            background: linear-gradient(90deg, #25D366, #128C7E);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4);
+        }
+        
+        .btn-email {
+            background: linear-gradient(90deg, #4285F4, #34A853);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(66, 133, 244, 0.3);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-email:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(66, 133, 244, 0.4);
+        }
+        
         .icon-circle {
             width: 60px;
             height: 60px;
@@ -173,7 +211,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 10px;
+            margin: 0 8px;
             transition: all 0.3s ease;
             text-decoration: none;
             color: white;
@@ -215,15 +253,32 @@
             scroll-behavior: smooth;
         }
         
-        /* Gradient overlay for hero section */
-        .hero-gradient-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(138, 43, 226, 0.7), rgba(255, 105, 180, 0.7));
-            z-index: 1;
+        /* WhatsApp Floating Widget */
+        .whatsapp-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-size: 1.5rem;
+        }
+        
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(37, 211, 102, 0.6);
         }
         
         /* About section styling */
@@ -297,6 +352,11 @@
             .about-title {
                 font-size: 2rem;
             }
+            
+            .whatsapp-widget {
+                bottom: 15px;
+                right: 15px;
+            }
         }
     </style>
 </head>
@@ -311,7 +371,12 @@
             <h1 class="text-4xl md:text-5xl font-bold mb-4">Welcome to <span class="gradient-text">Colour Lab</span></h1>
             <p class="text-xl mb-6">Where Science Meets Style ✨</p>
             <p class="text-lg mb-8">Expert Colour • Balayage • Blondes • Treatments</p>
-            <a href="#contact" class="btn-primary">Book an Appointment</a>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="#contact" class="btn-primary">Book an Appointment</a>
+                <a href="https://wa.me/27723749333" class="btn-secondary">
+                    <i class="fab fa-whatsapp"></i> WhatsApp Us
+                </a>
+            </div>
         </div>
     </section>
 
@@ -506,6 +571,16 @@
                         </div>
                     </div>
                     
+                    <!-- Contact Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="https://wa.me/27723749333" class="btn-secondary">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </a>
+                        <a href="mailto:info@colourlab.co.za" class="btn-email">
+                            <i class="fas fa-envelope"></i> Email Us
+                        </a>
+                    </div>
+                    
                     <!-- Social Media -->
                     <div class="flex space-x-4 mt-4">
                         <a href="#" class="social-icon">
@@ -531,18 +606,25 @@
     <!-- Footer -->
     <footer class="footer">
         <p>&copy; 2025 Colour Lab – Hair Studio | Designed with ❤️ in George</p>
-        <div class="mt-4">
-            <a href="#" class="social-icon mx-1">
+        <div class="mt-4 flex justify-center space-x-4">
+            <a href="#" class="social-icon">
                 <i class="fab fa-instagram"></i>
             </a>
-            <a href="#" class="social-icon mx-1">
+            <a href="#" class="social-icon">
                 <i class="fab fa-facebook-f"></i>
             </a>
-            <a href="#" class="social-icon mx-1">
+            <a href="#" class="social-icon">
                 <i class="fab fa-whatsapp"></i>
             </a>
         </div>
     </footer>
+
+    <!-- WhatsApp Floating Widget -->
+    <div class="whatsapp-widget">
+        <a href="https://wa.me/27723749333" class="whatsapp-btn" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
 
     <script>
         // Smooth scrolling for navigation links
