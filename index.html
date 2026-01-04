@@ -8,65 +8,725 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-        body { font-family: 'Poppins', sans-serif; }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        
         .gradient-text {
             background: linear-gradient(90deg, #2d1b40, #8a2be2, #ff69b4);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        /* styles unchanged */
+        
+        .underline-gradient {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .underline-gradient::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #8a2be2, #ff69b4);
+            border-radius: 3px;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        }
+        
+        .contact-info:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .hero-section {
+            background: url('https://raw.githubusercontent.com/nicholaskock33-tech/Colour-Lab-Hair-Studio/main/BACKGROUND.jpg') center/cover no-repeat;
+            padding: 80px 20px;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.8), rgba(255, 105, 180, 0.8));
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-subtitle {
+            font-size: 1rem;
+            color: #6b7280;
+            margin-bottom: 2rem;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(90deg, #ffcc00, #ff9933);
+            color: #2d1b40;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(255, 204, 0, 0.3);
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(255, 204, 0, 0.4);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(90deg, #25D366, #128C7E);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4);
+        }
+        
+        .btn-email {
+            background: linear-gradient(90deg, #4285F4, #34A853);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(66, 133, 244, 0.3);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-email:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(66, 133, 244, 0.4);
+        }
+        
+        .btn-facebook {
+            background: linear-gradient(90deg, #4267B2, #3b5998);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(66, 103, 178, 0.3);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-facebook:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(66, 103, 178, 0.4);
+        }
+        
+        .icon-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            background: linear-gradient(135deg, #8a2be2, #ff69b4);
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .star-rating {
+            color: #FFD700;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .work-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .work-image:hover {
+            transform: scale(1.05);
+        }
+        
+        .work-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px;
+            border-radius: 0 0 10px 10px;
+            opacity: 0;
+            transform: translateY(100%);
+            transition: all 0.3s ease;
+        }
+        
+        .work-item:hover .work-caption {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .footer {
+            background: linear-gradient(90deg, #2d1b40, #8a2be2);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 8px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: white;
+        }
+        
+        .social-icon:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .map-container {
+            height: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-info {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #8a2be2, #ff69b4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin-right: 1rem;
+        }
+        
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
+        
+        /* WhatsApp Floating Widget */
+        .whatsapp-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-size: 1.5rem;
+        }
+        
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(37, 211, 102, 0.6);
+        }
+        
+        /* About section styling */
+        .about-section {
+            background: white;
+            padding: 80px 20px;
+            position: relative;
+        }
+        
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .about-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .about-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, #8a2be2, #ff69b4);
+            border-radius: 3px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin: 2rem auto;
+            max-width: 700px;
+        }
+        
+        .highlight-text {
+            color: #8a2be2;
+            font-weight: 600;
+        }
+        
+        .italic-highlight {
+            font-style: italic;
+            color: #8a2be2;
+        }
+        
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .hero-section {
+                padding: 60px 15px;
+            }
+            
+            .service-card, .review-card {
+                margin-bottom: 1rem;
+            }
+            
+            .work-image {
+                height: 200px;
+            }
+            
+            .about-title {
+                font-size: 2rem;
+            }
+            
+            .whatsapp-widget {
+                bottom: 15px;
+                right: 15px;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                gap: 12px;
+            }
+        }
     </style>
 </head>
-
 <body class="bg-white smooth-scroll">
-
-<!-- Hero Section -->
-<section class="hero-section" id="home">
-    <div class="hero-content">
-        <div class="mb-6">
-            <img src="https://raw.githubusercontent.com/nicholaskock33-tech/Colour-Lab-Hair-Studio/main/LOGO.jpg"
-                 alt="Abby's Beauty Salon Logo"
-                 class="mx-auto rounded-lg"
-                 style="max-width: 180px;">
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+        <div class="hero-gradient-overlay"></div>
+        <div class="hero-content">
+            <div class="mb-6">
+                <img src="https://scontent.fcpt5-1.fna.fbcdn.net/v/t39.30808-6/471857176_1100115925140809_1275774031871788056_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=Pjce-er1TsgQ7kNvwGmlciM&_nc_oc=AdkRNbYFRQALtqbUDrZYl0bQbQQYejbWs_VwHiAFpjOsROxvXGqgyEcS25UcTHf9_7I&_nc_zt=23&_nc_ht=scontent.fcpt5-1.fna&_nc_gid=agV9pgWIK03LhTmnzzXJ0g&oh=00_AfpbLB0bYVvu1GjrwTe9hlXjq_MeC3W-7-vnthQYJAJaVA&oe=69606936" alt="Abby's Beauty Salon Logo" class="mx-auto rounded-lg" style="max-width: 180px;">
+            </div>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Welcome to <span class="gradient-text">Abby's Beauty Salon</span></h1>
+            <p class="text-xl mb-6">Where Science Meets Style ✨</p>
+            <p class="text-lg mb-8">Expert Colour • Balayage • Blondes • Treatments</p>
+            <div class="hero-buttons flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="#contact" class="btn-primary">Book an Appointment</a>
+                <a href="https://www.facebook.com/p/Abbys-Beauty-Salon-100054272360243/" class="btn-facebook" target="_blank">
+                    <i class="fab fa-facebook-f"></i> See Our Work
+                </a>
+                <a href="https://wa.me/27787214546" class="btn-secondary">
+                    <i class="fab fa-whatsapp"></i> WhatsApp Us
+                </a>
+            </div>
         </div>
+    </section>
 
-        <h1 class="text-4xl md:text-5xl font-bold mb-4">
-            Welcome to <span class="gradient-text">Abby's Beauty Salon</span>
-        </h1>
-
-        <p class="text-xl mb-6">Where Beauty Meets Confidence ✨</p>
-        <p class="text-lg mb-8">Expert Colour • Styling • Treatments</p>
-    </div>
-</section>
-
-<!-- About Section -->
-<section class="about-section" id="about">
-    <div class="about-content">
-        <h2 class="about-title">About <span class="gradient-text">Abby's Beauty Salon</span></h2>
-
-        <div class="about-text">
-            <p>
-                At <strong>Abby's Beauty Salon</strong>, we combine professional care and creativity
-                to bring out your best look.
-            </p>
-
-            <p>
-                Our experienced team specializes in
-                <span class="highlight-text">colour, styling, treatments, and beauty services</span>
-                tailored just for you.
-            </p>
-
-            <p class="italic-highlight">
-                We believe beauty is personal — and your style should reflect who you are.
-            </p>
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="about-content">
+            <h2 class="about-title">About <span class="gradient-text">Abby's Beauty Salon</span></h2>
+            <div class="about-text">
+                <p>At <strong>Abby's Beauty Salon</strong>, we combine science and style to create your perfect look.</p>
+                <p>Our expert stylists specialize in <span class="highlight-text">colour corrections, balayage, blondes, foils</span>, and professional restorative treatments such as <span class="highlight-text">K18, Olaplex, and Brazilian Keratin</span>.</p>
+                <p class="italic-highlight">We believe your hair should be as unique as you are — healthy, vibrant, and full of life.</p>
+            </div>
         </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="py-16 px-4 bg-gray-50" id="services">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="section-title text-center">Our <span class="gradient-text">Services</span></h2>
+            <div class="underline-gradient mx-auto w-16 mb-12"></div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="service-card bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
+                    <div class="icon-circle">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center">Colour & Highlights</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center"><span class="w-2 h-2 bg-yellow-400 rounded-full mr-2"></span>Balayage & Ombre</li>
+                        <li class="flex items-center"><span class="w-2 h-2 bg-yellow-400 rounded-full mr-2"></span>Blondes & Foils</li>
+                        <li class="flex items-center"><span class="w-2 h-2 bg-yellow-400 rounded-full mr-2"></span>Colour Corrections</li>
+                    </ul>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
+                    <div class="icon-circle">
+                        <i class="fas fa-droplet"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center">Treatments</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center"><span class="w-2 h-2 bg-yellow-400 rounded-full mr-2"></span>K18 & Olaplex Strengthening</li>
+                        <li class="flex items-center"><span class="w-2 h-2 bg-yellow-400 rounded-full mr-2"></span>Brazilian Keratin Smoothing</li>
+                        <li class="flex items-center"><span class="w-2 h-2 bg-yellow-400 rounded-full mr-2"></span>Deep Conditioning</li>
+                    </ul>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
+                    <div class="icon-circle">
+                        <i class="fas fa-scissors"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center">Cuts & Styling</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center"><span class="w-2 h-2 bg-yellow-400 rounded-full mr-2"></span>Ladies' & Men's Cuts</li>
+                        <li class="flex items-center"><span class="w-2 h-2 bg-yellow-400 rounded-full mr-2"></span>Blowouts</li>
+                        <li class="flex items-center"><span class="w-2 h-2 bg-yellow-400 rounded-full mr-2"></span>Bridal & Event Styling</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Section -->
+    <section class="py-16 px-4 bg-white" id="work">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="section-title text-center">Our <span class="gradient-text">Work</span></h2>
+            <p class="section-subtitle text-center">See the transformations we've created</p>
+            <div class="text-center mb-8">
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="https://www.facebook.com/p/Abbys-Beauty-Salon-100054272360243/" class="btn-facebook" target="_blank">
+                        <i class="fab fa-facebook-f"></i> View Full Portfolio on Facebook
+                    </a>
+                    <a href="https://vm.tiktok.com/ZSHEy737smNo7-khALV/" class="btn-secondary" target="_blank">
+                        <i class="fab fa-tiktok"></i> Follow Us on TikTok
+                    </a>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+                <!-- Row 1 -->
+                <div class="work-item overflow-hidden rounded-lg relative">
+                    <img src="https://raw.githubusercontent.com/nicholaskock33-tech/Colour-Lab-Hair-Studio/main/nails1.jpg" alt="Balayage Transformation" class="work-image">
+                    <div class="work-caption">Balayage Transformation</div>
+                </div>
+                <div class="work-item overflow-hidden rounded-lg relative">
+                    <img src="https://raw.githubusercontent.com/nicholaskock33-tech/Colour-Lab-Hair-Studio/main/nails2.jpg" alt="Healthy Shine" class="work-image">
+                    <div class="work-caption">Healthy Shine</div>
+                </div>
+                <div class="work-item overflow-hidden rounded-lg relative">
+                    <img src="https://raw.githubusercontent.com/nicholaskock33-tech/Colour-Lab-Hair-Studio/main/nails1.jpg" alt="Perfect Blonde" class="work-image">
+                    <div class="work-caption">Perfect Blonde</div>
+                </div>
+                
+                <!-- Row 2 -->
+                <div class="work-item overflow-hidden rounded-lg relative">
+                    <img src="https://raw.githubusercontent.com/nicholaskock33-tech/Colour-Lab-Hair-Studio/main/482961225_1186640830135883_111972584306049213_n.jpg" alt="Colour Correction" class="work-image">
+                    <div class="work-caption">Colour Correction</div>
+                </div>
+                <div class="work-item overflow-hidden rounded-lg relative">
+                    <img src="https://raw.githubusercontent.com/nicholaskock33-tech/Colour-Lab-Hair-Studio/main/473428050_18487353274037864_870575939327176534_n.jpg" alt="Glossy Finish" class="work-image">
+                    <div class="work-caption">Glossy Finish</div>
+                </div>
+                <div class="work-item overflow-hidden rounded-lg relative">
+                    <img src="https://raw.githubusercontent.com/nicholaskock33-tech/Colour-Lab-Hair-Studio/main/473374574_18487353343037864_4817995262208831793_n.jpg" alt="Stunning Highlights" class="work-image">
+                    <div class="work-caption">Stunning Highlights</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="py-16 px-4 bg-gray-50" id="reviews">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="section-title text-center">Client <span class="gradient-text">Reviews</span></h2>
+            <div class="underline-gradient mx-auto w-16 mb-12"></div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Review 1 -->
+                <div class="review-card bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
+                    <div class="star-rating mb-3">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-4">"Best hair salon in George!"</p>
+                    <p class="font-semibold text-purple-600">Sarah M.</p>
+                </div>
+                
+                <!-- Review 2 -->
+                <div class="review-card bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
+                    <div class="star-rating mb-3">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-4">"They completely revived my colour — highly recommended!"</p>
+                    <p class="font-semibold text-purple-600">Jessica T.</p>
+                </div>
+                
+                <!-- Review 3 -->
+                <div class="review-card bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
+                    <div class="star-rating mb-3">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-4">"Professional, friendly, and amazing results every time."</p>
+                    <p class="font-semibold text-purple-600">Lisa K.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-16 px-4 bg-white" id="contact">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="section-title text-center">Book Your <span class="gradient-text">Appointment</span></h2>
+            <p class="section-subtitle text-center">Get in touch today!</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                <div class="space-y-6">
+                    <!-- Address -->
+                    <div class="contact-info">
+                        <div class="flex items-start">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg mb-1">Address</h3>
+                                <p class="text-gray-600">Shop No. 2, Highlands Building, Western Rd<br>Gqeberha Central, Gqeberha, 6006</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Phone -->
+                    <div class="contact-info">
+                        <div class="flex items-start">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg mb-1">Phone</h3>
+                                <p class="text-gray-600">078 721 4546</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Hours -->
+                    <div class="contact-info">
+                        <div class="flex items-start">
+                            <div class="contact-icon">
+                                <i class="far fa-clock"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg mb-1">Hours</h3>
+                                <p class="text-gray-600">Open daily<br>Closes 5 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Contact Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="https://wa.me/27787214546" class="btn-secondary">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </a>
+                        <a href="mailto:info@colourlab.co.za" class="btn-email">
+                            <i class="fas fa-envelope"></i> Email Us
+                        </a>
+                    </div>
+                    
+                    <!-- Social Media -->
+                    <div class="flex space-x-4 mt-4">
+                        <a href="https://www.facebook.com/p/Abbys-Beauty-Salon-100054272360243/" class="social-icon" target="_blank">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/abbysbeautysalon/" class="social-icon" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://vm.tiktok.com/ZSHEy737smNo7-khALV/" class="social-icon" target="_blank">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                        <a href="https://wa.me/27787214546" class="social-icon" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Map -->
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3304.3941489375824!2d25.57835197692342!3d-33.96161267354265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e2f6c8bb2f473e7%3A0x5b8f8ce12a9c7c46!2sHighlands%20Building%2C%20Western%20Rd%2C%20Gqeberha%20Central%2C%20Gqeberha%2C%206001!5e0!3m2!1sen!2sza!4v1716500000000!5m2!1sen!2sza" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Abby's Beauty Salon | Designed with ❤️ in George</p>
+        <div class="mt-4 flex justify-center space-x-4">
+            <a href="https://www.facebook.com/p/Abbys-Beauty-Salon-100054272360243/" class="social-icon" target="_blank">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.instagram.com/abbysbeautysalon/" class="social-icon" target="_blank">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://vm.tiktok.com/ZSHEy737smNo7-khALV/" class="social-icon" target="_blank">
+                <i class="fab fa-tiktok"></i>
+            </a>
+            <a href="https://wa.me/27787214546" class="social-icon" target="_blank">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Widget -->
+    <div class="whatsapp-widget">
+        <a href="https://wa.me/27787214546" class="whatsapp-btn" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
     </div>
-</section>
 
-<!-- Footer -->
-<footer class="footer">
-    <p>&copy; 2025 Abby's Beauty Salon | Designed with ❤️ in George</p>
-</footer>
-
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Add scroll animation for elements
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe service cards and work items
+        document.querySelectorAll('.service-card, .work-item, .review-card').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Add fade-in animation class
+        const style = document.createElement('style');
+        style.textContent = `
+            .animate-fade-in {
+                animation: fadeIn 0.6s ease-out forwards;
+            }
+            
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
 </body>
 </html>
+
